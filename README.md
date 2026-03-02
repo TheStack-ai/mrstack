@@ -345,6 +345,14 @@ curl http://localhost:8080/health   # API 서버 활성화된 경우
 텔레그램에서 봇에게 아무 메시지를 보내보세요.
 `/jarvis` — 상태 확인 | `/coach` — 코칭 리포트
 
+#### 5단계: 봇 프로필 사진 설정 (선택)
+
+Mr.Stack 로고를 봇 프로필에 적용하면 텔레그램에서 바로 구별됩니다.
+
+1. [@BotFather](https://t.me/botfather)에게 `/mybots` 전송
+2. 내 봇 선택 → **Edit Bot** → **Edit Botpic**
+3. `assets/bot-profile.png` 파일을 전송
+
 ---
 
 ### 방법 B: Claude Code로 설치

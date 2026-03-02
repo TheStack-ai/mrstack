@@ -694,40 +694,28 @@ fi
 step "Setting bot profile photo..."
 
 BOT_PROFILE_IMG="$SCRIPT_DIR/assets/bot-profile.png"
-if [[ -f "$BOT_PROFILE_IMG" ]] && [[ -f "$ENV_FILE" ]]; then
-    BOT_TOKEN=$(grep -E "^TELEGRAM_BOT_TOKEN=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2- | tr -d '"' | tr -d "'")
-    if [[ -z "$BOT_TOKEN" ]]; then
-        BOT_TOKEN=$(grep -E "^BOT_TOKEN=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2- | tr -d '"' | tr -d "'")
-    fi
+if [[ -f "$BOT_PROFILE_IMG" ]]; then
+    echo ""
+    echo -e "  ${BOLD}봇 프로필 사진을 Mr.Stack 로고로 설정하세요:${NC}"
+    echo ""
+    echo "  1. Telegram에서 @BotFather에게 메시지"
+    echo "  2. /mybots → 내 봇 선택"
+    echo "  3. Edit Bot → Edit Botpic"
+    echo "  4. 아래 이미지를 전송:"
+    echo ""
+    echo -e "     ${GREEN}$BOT_PROFILE_IMG${NC}"
+    echo ""
 
-    if [[ -n "$BOT_TOKEN" ]]; then
-        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
-            -F "photo=@$BOT_PROFILE_IMG" \
-            "https://api.telegram.org/bot${BOT_TOKEN}/setMyPhoto" 2>/dev/null)
-        if [[ "$RESPONSE" == "200" ]]; then
-            info "Bot profile photo set (Mr.Stack logo)"
-        else
-            # Try alternative method name
-            RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
-                -F "photo=@$BOT_PROFILE_IMG" \
-                "https://api.telegram.org/bot${BOT_TOKEN}/setChatPhoto" -F "chat_id=@$(curl -s "https://api.telegram.org/bot${BOT_TOKEN}/getMe" | python3 -c "import sys,json;print(json.load(sys.stdin)['result']['username'])" 2>/dev/null)" 2>/dev/null)
-            if [[ "$RESPONSE" == "200" ]]; then
-                info "Bot profile photo set (Mr.Stack logo)"
-            else
-                warn "Could not auto-set bot profile photo (API returned $RESPONSE)"
-                echo "    Set it manually: BotFather → /mybots → your bot → Edit Bot → Edit Botpic"
-                echo "    Use: $BOT_PROFILE_IMG"
-            fi
+    # macOS: 파인더에서 이미지 열어줌
+    if [[ "$(uname)" == "Darwin" ]]; then
+        read -rp "  이미지를 파인더에서 열까요? [Y/n] " open_img
+        if [[ ! "$open_img" =~ ^[Nn]$ ]]; then
+            open -R "$BOT_PROFILE_IMG"
+            info "Finder에서 bot-profile.png 위치를 열었습니다"
         fi
-    else
-        warn "Bot token not found in .env — skipping profile photo"
-        echo "    Set it manually: BotFather → /mybots → Edit Botpic"
-        echo "    Use: $BOT_PROFILE_IMG"
     fi
 else
-    if [[ ! -f "$BOT_PROFILE_IMG" ]]; then
-        warn "bot-profile.png not found — skipping profile photo"
-    fi
+    warn "bot-profile.png not found — skipping profile photo"
 fi
 
 # ── Step 11: Create memory directory ──
