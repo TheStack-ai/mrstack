@@ -690,35 +690,7 @@ else
     echo "  NOTIFICATION_CHAT_IDS=<your_telegram_user_id>"
 fi
 
-# ── Step 10: Set Telegram bot profile photo ──
-step "Setting bot profile photo..."
-
-BOT_PROFILE_IMG="$SCRIPT_DIR/assets/bot-profile.png"
-if [[ -f "$BOT_PROFILE_IMG" ]]; then
-    echo ""
-    echo -e "  ${BOLD}봇 프로필 사진을 Mr.Stack 로고로 설정하세요:${NC}"
-    echo ""
-    echo "  1. Telegram에서 @BotFather에게 메시지"
-    echo "  2. /mybots → 내 봇 선택"
-    echo "  3. Edit Bot → Edit Botpic"
-    echo "  4. 아래 이미지를 전송:"
-    echo ""
-    echo -e "     ${GREEN}$BOT_PROFILE_IMG${NC}"
-    echo ""
-
-    # macOS: 파인더에서 이미지 열어줌
-    if [[ "$(uname)" == "Darwin" ]]; then
-        read -rp "  이미지를 파인더에서 열까요? [Y/n] " open_img
-        if [[ ! "$open_img" =~ ^[Nn]$ ]]; then
-            open -R "$BOT_PROFILE_IMG"
-            info "Finder에서 bot-profile.png 위치를 열었습니다"
-        fi
-    fi
-else
-    warn "bot-profile.png not found — skipping profile photo"
-fi
-
-# ── Step 11: Create memory directory ──
+# ── Step 10: Create memory directory ──
 step "Setting up memory directory..."
 
 MEMORY_DIR="$HOME/claude-telegram/memory/patterns"
