@@ -24,7 +24,8 @@ Claude Code + Telegram = 24시간 AI 개발 파트너
 ```bash
 uv tool install mrstack        # 1. 설치
 mrstack init                    # 2. 설정 (텔레그램 토큰 + User ID 입력)
-mrstack start                   # 3. 시작!
+mrstack start                   # 3. 시작! (테스트용, 터미널 열어둬야 함)
+mrstack daemon                  # 4. 상시 실행 등록 → 터미널 꺼도 24시간 동작
 ```
 
 텔레그램에서 봇에게 아무 메시지를 보내보세요. 응답이 오면 성공입니다.

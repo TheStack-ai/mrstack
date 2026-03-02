@@ -24,7 +24,8 @@ Claude Code + Telegram = Your 24/7 AI development partner
 ```bash
 uv tool install mrstack        # 1. Install
 mrstack init                    # 2. Setup (enter Telegram token + User ID)
-mrstack start                   # 3. Go!
+mrstack start                   # 3. Go! (test run, needs terminal open)
+mrstack daemon                  # 4. Register daemon → runs 24/7, even after closing terminal
 ```
 
 Send any message to your bot on Telegram. If it replies, you're done.
