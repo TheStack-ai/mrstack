@@ -4,7 +4,7 @@
 
 # Mr.Stack
 
-**Claude that works while your MacBook sleeps.**
+**Claude that works after you close the terminal.**
 
 Claude Code + Telegram = Your 24/7 AI development partner
 

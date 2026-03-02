@@ -4,7 +4,7 @@
 
 # Mr.Stack
 
-**맥북을 덮어도 일하는 Claude.**
+**터미널을 꺼도 일하는 Claude.**
 
 Claude Code + Telegram = 24시간 AI 개발 파트너
 
