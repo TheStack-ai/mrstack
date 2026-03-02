@@ -1,0 +1,53 @@
+name: Release to PyPI
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Build package
+        run: uv build
+
+      - name: Publish to PyPI
+        run: uv publish dist/*
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+
+      - name: Update Homebrew Formula
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${GITHUB_REF#refs/tags/v}"
+          SHA=$(shasum -a 256 dist/mrstack-${TAG}.tar.gz | cut -d' ' -f1)
+
+          # Clone homebrew tap
+          git clone https://x-access-token:${GH_TOKEN}@github.com/whynowlab/homebrew-mrstack.git /tmp/tap
+          cd /tmp/tap
+
+          # Update formula
+          sed -i "s|url \".*\"|url \"https://files.pythonhosted.org/packages/source/m/mrstack/mrstack-${TAG}.tar.gz\"|" Formula/mrstack.rb
+          sed -i "s|sha256 \".*\"|sha256 \"${SHA}\"|" Formula/mrstack.rb
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/mrstack.rb
+          git commit -m "Update mrstack to v${TAG}" || exit 0
+          git push
