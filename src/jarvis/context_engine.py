@@ -1,7 +1,7 @@
 """Context engine — polls system state, detects context, evaluates triggers.
 
 Mirrors ClipboardMonitor's asyncio.Task pattern:
-- 5-minute polling via subprocess calls (osascript, pmset, sysctl, git, etc.)
+- 5-minute polling via platform-abstracted collectors
 - State classification (CODING, BROWSING, MEETING, ...)
 - Rule-based trigger evaluation with cooldowns
 - Publishes ScheduledEvent to EventBus on trigger fire
@@ -9,7 +9,6 @@ Mirrors ClipboardMonitor's asyncio.Task pattern:
 
 import asyncio
 import re
-import subprocess
 import time
 from collections import deque
 from typing import Any, Deque, Dict, List, Optional, Tuple
@@ -19,6 +18,14 @@ import structlog
 from ..events.bus import EventBus
 from ..events.types import ScheduledEvent
 from .persona import ContextState, PersonaLayer
+from .platform import (
+    FEATURES,
+    collect_active_app,
+    collect_battery,
+    collect_chrome_tabs,
+    collect_cpu_load,
+    collect_git_info,
+)
 
 logger = structlog.get_logger()
 
@@ -238,71 +245,38 @@ class ContextEngine:
             logger.info("Jarvis trigger fired", trigger=trigger_id)
 
     async def _collect_snapshot(self) -> ContextSnapshot:
-        """Collect system state via parallel subprocess calls."""
-        loop = asyncio.get_event_loop()
+        """Collect system state via platform-abstracted collectors.
 
-        async def _run(cmd: List[str], timeout: int = 5) -> str:
-            try:
-                result = await loop.run_in_executor(
-                    None,
-                    lambda: subprocess.run(
-                        cmd, capture_output=True, text=True, timeout=timeout
-                    ),
-                )
-                return result.stdout.strip() if result.returncode == 0 else ""
-            except Exception:
-                return ""
+        Uses platform.py for cross-platform support:
+        - macOS: osascript, pmset, sysctl (native)
+        - Linux: xdotool, psutil (fallback)
+        - Windows: psutil only (Jarvis limited)
+        """
+        loop = asyncio.get_running_loop()
 
-        # Run all collectors in parallel
+        # Run all collectors in parallel via executor (they do subprocess calls)
+        active_app_fut = loop.run_in_executor(None, collect_active_app)
+        battery_fut = loop.run_in_executor(None, collect_battery)
+        cpu_fut = loop.run_in_executor(None, collect_cpu_load)
+        git_fut = loop.run_in_executor(
+            None, collect_git_info, self.working_directory
+        )
+        chrome_fut = loop.run_in_executor(None, collect_chrome_tabs)
+
         results = await asyncio.gather(
-            _run([
-                "osascript", "-e",
-                'tell app "System Events" to get name of first process '
-                "whose frontmost is true",
-            ]),
-            _run(["pmset", "-g", "batt"]),
-            _run(["sysctl", "-n", "vm.loadavg"]),
-            _run([
-                "git", "-C", self.working_directory,
-                "branch", "--show-current",
-            ]),
-            _run([
-                "git", "-C", self.working_directory,
-                "status", "--short",
-            ]),
-            _run([
-                "osascript", "-e",
-                'tell application "Google Chrome" to get title of active tab '
-                "of front window",
-            ]),
+            active_app_fut, battery_fut, cpu_fut, git_fut, chrome_fut,
             return_exceptions=True,
         )
 
-        # Parse results
         active_app = results[0] if isinstance(results[0], str) else ""
-
-        battery_pct = 100
-        battery_charging = True
-        batt_str = results[1] if isinstance(results[1], str) else ""
-        batt_match = re.search(r"(\d+)%", batt_str)
-        if batt_match:
-            battery_pct = int(batt_match.group(1))
-        battery_charging = "charging" in batt_str.lower() or "charged" in batt_str.lower()
-
-        cpu_load = 0.0
-        load_str = results[2] if isinstance(results[2], str) else ""
-        load_match = re.search(r"[\d.]+", load_str)
-        if load_match:
-            try:
-                cpu_load = float(load_match.group())
-            except ValueError:
-                pass
-
-        git_branch = results[3] if isinstance(results[3], str) else ""
-        git_dirty = bool(results[4]) if isinstance(results[4], str) else False
-
-        chrome_tab = results[5] if isinstance(results[5], str) else ""
-        chrome_tabs = [chrome_tab] if chrome_tab else []
+        battery_pct, battery_charging = (
+            results[1] if isinstance(results[1], tuple) else (100, True)
+        )
+        cpu_load = results[2] if isinstance(results[2], float) else 0.0
+        git_branch, git_dirty = (
+            results[3] if isinstance(results[3], tuple) else ("", False)
+        )
+        chrome_tabs = results[4] if isinstance(results[4], list) else []
 
         return ContextSnapshot(
             active_app=active_app,

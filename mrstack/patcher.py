@@ -59,18 +59,16 @@ def patch_install(site_pkg: Path | None = None, force: bool = False) -> bool:
         if not mod_src.is_dir():
             continue
         mod_dst = src_dir / mod
-        if mod_dst.is_dir() and not force:
-            # Merge: copy individual files, don't nuke the whole directory
-            for f in mod_src.rglob("*"):
-                if f.is_file():
-                    rel = f.relative_to(mod_src)
-                    dst = mod_dst / rel
-                    dst.parent.mkdir(parents=True, exist_ok=True)
-                    shutil.copy2(f, dst)
-        else:
-            if mod_dst.is_dir():
-                shutil.rmtree(mod_dst)
-            shutil.copytree(mod_src, mod_dst)
+        # Always merge (file-level copy). Never rmtree — the target directory
+        # contains original claude-code-telegram files we must not delete.
+        for f in mod_src.rglob("*"):
+            if f.is_file():
+                rel = f.relative_to(mod_src)
+                dst = mod_dst / rel
+                if dst.is_file() and not force:
+                    continue  # skip existing unless --force
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(f, dst)
 
     console.print("[green]Overlay modules installed.[/]")
 
