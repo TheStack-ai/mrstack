@@ -13,6 +13,7 @@ Claude Code + Telegram = Your 24/7 AI development partner
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![macOS](https://img.shields.io/badge/macOS-Ventura%20%7C%20Sonoma%20%7C%20Sequoia-black.svg)](https://apple.com/macos)
 [![Linux](https://img.shields.io/badge/Linux-supported-orange.svg)](#compatibility)
+[![Windows](https://img.shields.io/badge/Windows-coming%20soon-lightgrey.svg)](#compatibility)
 [![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?logo=telegram)](https://t.me/botfather)
 
 </div>
@@ -335,7 +336,7 @@ Claude reads the README and guides you through setup.
 |----------|--------------|
 | **macOS** (Ventura / Sonoma / Sequoia) | 100% — all features + `daemon` for 24/7 background |
 | **Linux** | 95% — `daemon` supported. Jarvis active app/Chrome tab detection unavailable |
-| **Windows** | 80% — works via WSL2. No `daemon` yet (must keep terminal open) |
+| **Windows** | Coming soon |
 
 | Requirement | Version |
 |-------------|---------|

@@ -13,6 +13,7 @@ Claude Code + Telegram = 24시간 AI 개발 파트너
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![macOS](https://img.shields.io/badge/macOS-Ventura%20%7C%20Sonoma%20%7C%20Sequoia-black.svg)](https://apple.com/macos)
 [![Linux](https://img.shields.io/badge/Linux-supported-orange.svg)](#호환성)
+[![Windows](https://img.shields.io/badge/Windows-coming%20soon-lightgrey.svg)](#호환성)
 [![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?logo=telegram)](https://t.me/botfather)
 
 </div>
@@ -335,7 +336,7 @@ Claude가 README를 읽고 설치 과정을 안내합니다.
 |--------|----------|
 | **macOS** (Ventura / Sonoma / Sequoia) | 100% — 모든 기능 + `daemon`으로 24시간 상시 실행 |
 | **Linux** | 95% — `daemon` 지원. Jarvis 활성 앱/Chrome 탭 감지만 제외 |
-| **Windows** | 80% — WSL2에서 동작. `daemon` 미지원 (터미널 열어둬야 함) |
+| **Windows** | 준비 중 |
 
 | 요구사항 | 버전 |
 |----------|------|
