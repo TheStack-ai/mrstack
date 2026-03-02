@@ -334,8 +334,7 @@ Claude reads the README and guides you through setup.
 |----------|--------------|
 | **macOS** (Ventura / Sonoma / Sequoia) | 100% — all features |
 | **Linux** | 95% — Jarvis active app/Chrome tab detection unavailable, everything else works |
-| **Windows (WSL2)** | 95% — same as Linux |
-| **Windows (native)** | Roadmap |
+| **Windows** | 95% — works via WSL2, same as Linux |
 
 | Requirement | Version |
 |-------------|---------|

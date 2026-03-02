@@ -334,8 +334,7 @@ Claude가 README를 읽고 설치 과정을 안내합니다.
 |--------|----------|
 | **macOS** (Ventura / Sonoma / Sequoia) | 100% — 모든 기능 |
 | **Linux** | 95% — Jarvis의 활성 앱/Chrome 탭 감지 제외, 나머지 정상 |
-| **Windows (WSL2)** | 95% — Linux와 동일 |
-| **Windows (네이티브)** | 로드맵 |
+| **Windows** | 95% — WSL2 환경에서 Linux와 동일하게 동작 |
 
 | 요구사항 | 버전 |
 |----------|------|
