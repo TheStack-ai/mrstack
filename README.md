@@ -1,10 +1,19 @@
+<div align="center">
+
+<img src="assets/logo.svg" alt="Mr.Stack" width="180" />
+
 # Mr.Stack
 
-> Claude Code + Telegram = 24시간 상시 대기 AI 개발 파트너.
+**맥북을 덮어도 일하는 Claude. 아침에 브리핑, 밤에 코칭.**
+
+Claude Code + Telegram = 24시간 상시 대기 AI 개발 파트너
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://python.org)
 [![macOS](https://img.shields.io/badge/macOS-Ventura%20%7C%20Sonoma%20%7C%20Sequoia-black.svg)](https://apple.com/macos)
+[![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?logo=telegram)](https://t.me/botfather)
+
+</div>
 
 **맥북 상태를 관찰하고 | 대화를 기억하고 | 작업 패턴을 학습하고 | 먼저 말을 거는** AI 파트너.
 

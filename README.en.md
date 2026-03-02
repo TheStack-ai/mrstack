@@ -1,10 +1,19 @@
+<div align="center">
+
+<img src="assets/logo.svg" alt="Mr.Stack" width="180" />
+
 # Mr.Stack
 
-> Claude Code + Telegram = Your 24/7 AI development partner.
+**Claude that works while your MacBook sleeps. Morning briefings, nightly coaching.**
+
+Claude Code + Telegram = Your 24/7 AI development partner
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://python.org)
 [![macOS](https://img.shields.io/badge/macOS-Ventura%20%7C%20Sonoma%20%7C%20Sequoia-black.svg)](https://apple.com/macos)
+[![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?logo=telegram)](https://t.me/botfather)
+
+</div>
 
 **Observes your Mac | Remembers conversations | Learns your patterns | Speaks first** — an AI partner that doesn't wait to be asked.
 

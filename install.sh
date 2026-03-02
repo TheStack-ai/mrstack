@@ -18,11 +18,19 @@ error() { echo -e "${RED}[✗]${NC} $1"; exit 1; }
 step()  { echo -e "\n${BOLD}→ $1${NC}"; }
 
 echo -e "${BOLD}"
-echo "  ╔═══════════════════════════════════╗"
-echo "  ║  Mr.Stack Installer               ║"
-echo "  ║  Your AI butler, fully stacked.   ║"
-echo "  ╚═══════════════════════════════════╝"
-echo -e "${NC}"
+cat << 'BANNER'
+
+  ███╗   ███╗██████╗    ███████╗████████╗ █████╗  ██████╗██╗  ██╗
+  ████╗ ████║██╔══██╗   ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
+  ██╔████╔██║██████╔╝   ███████╗   ██║   ███████║██║     █████╔╝
+  ██║╚██╔╝██║██╔══██╗   ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
+  ██║ ╚═╝ ██║██║  ██║██╗███████║   ██║   ██║  ██║╚██████╗██║  ██╗
+  ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+
+BANNER
+echo -e "  ${GREEN}Your AI butler, fully stacked.${NC}"
+echo -e "  ${YELLOW}v1.0.0${NC}"
+echo ""
 
 # ── Step 1: Find claude-code-telegram site-packages ──
 step "Detecting claude-code-telegram installation..."
@@ -682,14 +690,54 @@ else
     echo "  NOTIFICATION_CHAT_IDS=<your_telegram_user_id>"
 fi
 
-# ── Step 10: Create memory directory ──
+# ── Step 10: Set Telegram bot profile photo ──
+step "Setting bot profile photo..."
+
+BOT_PROFILE_IMG="$SCRIPT_DIR/assets/bot-profile.png"
+if [[ -f "$BOT_PROFILE_IMG" ]] && [[ -f "$ENV_FILE" ]]; then
+    BOT_TOKEN=$(grep -E "^TELEGRAM_BOT_TOKEN=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2- | tr -d '"' | tr -d "'")
+    if [[ -z "$BOT_TOKEN" ]]; then
+        BOT_TOKEN=$(grep -E "^BOT_TOKEN=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2- | tr -d '"' | tr -d "'")
+    fi
+
+    if [[ -n "$BOT_TOKEN" ]]; then
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -F "photo=@$BOT_PROFILE_IMG" \
+            "https://api.telegram.org/bot${BOT_TOKEN}/setMyPhoto" 2>/dev/null)
+        if [[ "$RESPONSE" == "200" ]]; then
+            info "Bot profile photo set (Mr.Stack logo)"
+        else
+            # Try alternative method name
+            RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+                -F "photo=@$BOT_PROFILE_IMG" \
+                "https://api.telegram.org/bot${BOT_TOKEN}/setChatPhoto" -F "chat_id=@$(curl -s "https://api.telegram.org/bot${BOT_TOKEN}/getMe" | python3 -c "import sys,json;print(json.load(sys.stdin)['result']['username'])" 2>/dev/null)" 2>/dev/null)
+            if [[ "$RESPONSE" == "200" ]]; then
+                info "Bot profile photo set (Mr.Stack logo)"
+            else
+                warn "Could not auto-set bot profile photo (API returned $RESPONSE)"
+                echo "    Set it manually: BotFather → /mybots → your bot → Edit Bot → Edit Botpic"
+                echo "    Use: $BOT_PROFILE_IMG"
+            fi
+        fi
+    else
+        warn "Bot token not found in .env — skipping profile photo"
+        echo "    Set it manually: BotFather → /mybots → Edit Botpic"
+        echo "    Use: $BOT_PROFILE_IMG"
+    fi
+else
+    if [[ ! -f "$BOT_PROFILE_IMG" ]]; then
+        warn "bot-profile.png not found — skipping profile photo"
+    fi
+fi
+
+# ── Step 11: Create memory directory ──
 step "Setting up memory directory..."
 
 MEMORY_DIR="$HOME/claude-telegram/memory/patterns"
 mkdir -p "$MEMORY_DIR"
 info "Created $MEMORY_DIR"
 
-# ── Step 11: Claude HUD (optional) ──
+# ── Step 12: Claude HUD (optional) ──
 step "Setting up Claude HUD statusline..."
 
 # Check if Node.js is available
