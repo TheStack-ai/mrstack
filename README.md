@@ -2,7 +2,7 @@
 
 <img src="assets/logo-256.png" alt="Mr.Stack" width="140" />
 
-# Mr.Stack
+# Mr.Stack — Claude Code Telegram Bot (24/7 Daemon)
 
 **터미널을 꺼도 일하는 Claude.**
 
@@ -57,7 +57,7 @@ mrstack version       # 버전 정보
 
 ---
 
-## Mr.Stack이 뭔가요?
+## Mr.Stack — Claude Code Telegram Bot (24/7 Daemon)이 뭔가요?
 
 [Claude Code](https://claude.ai)를 **텔레그램으로 확장**한 24시간 AI 파트너입니다.
 
