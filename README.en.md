@@ -251,7 +251,7 @@ mrstack daemon    # Register system daemon → auto-starts on reboot
 <summary><b>Advanced: Install from source</b></summary>
 
 ```bash
-git clone https://github.com/whynowlab/mrstack.git
+git clone https://github.com/thestack-ai/mrstack.git
 cd mrstack
 pip install -e .
 mrstack init
@@ -266,7 +266,7 @@ For development contributions or customization.
 
 In Claude Code terminal:
 ```
-Look at github.com/whynowlab/mrstack and install Mr.Stack for me.
+Look at github.com/thestack-ai/mrstack and install Mr.Stack for me.
 ```
 
 Claude reads the README and guides you through setup.
@@ -416,7 +416,7 @@ About 15-20 extra API calls per day. Negligible on Max plan.
 ## Links
 
 - [Threads @thestack_ai](https://www.threads.net/@thestack_ai) — Updates and dev stories
-- [GitHub Issues](https://github.com/whynowlab/mrstack/issues) — Bug reports, feature requests
+- [GitHub Issues](https://github.com/thestack-ai/mrstack/issues) — Bug reports, feature requests
 - [PyPI](https://pypi.org/project/mrstack/) — Package
 - [claude-code-telegram](https://github.com/nicepkg/claude-code-telegram) — Base framework
 

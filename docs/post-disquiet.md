@@ -73,7 +73,7 @@ Claude Code를 매일 쓰면서 계속 같은 불편함을 느꼈습니다.
 
 ```bash
 uv tool install claude-code-telegram
-git clone https://github.com/whynowlab/mrstack.git
+git clone https://github.com/thestack-ai/mrstack.git
 cd mrstack && ./install.sh
 ```
 
@@ -83,7 +83,7 @@ macOS + Claude Code + Telegram 계정만 있으면 됩니다.
 
 ### 링크
 
-- GitHub: https://github.com/whynowlab/mrstack
+- GitHub: https://github.com/thestack-ai/mrstack
 - 라이선스: MIT (오픈소스)
 - 만든 사람: @thestack_ai (Threads)
 

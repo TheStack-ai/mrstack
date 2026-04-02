@@ -100,7 +100,7 @@ Mr.Stack은 다릅니다.
 **2단계** 설치 (5분)
 ```
 uv tool install claude-code-telegram
-git clone github.com/whynowlab/mrstack
+git clone github.com/thestack-ai/mrstack
 cd mrstack && ./install.sh
 ```
 
@@ -119,7 +119,7 @@ macOS 전용 / 오픈소스 / MIT 라이선스
 **매일 밤 이런 리포트를 못 받고 있다면,**
 **반만 쓰고 있는 겁니다.**
 
-github.com/whynowlab/mrstack
+github.com/thestack-ai/mrstack
 
 Star / Fork / Feedback 환영합니다.
 
@@ -139,6 +139,6 @@ Mr.Stack은 Claude Code를 텔레그램 AI 비서로 확장합니다.
 - 영구 메모리 (100% 로컬)
 - 오픈소스 (MIT)
 
-github.com/whynowlab/mrstack
+github.com/thestack-ai/mrstack
 
 #ClaudeCode #AI개발 #MrStack #텔레그램봇 #개발자도구 #오픈소스 #macOS #AIAssistant #프로덕티비티 #개발생산성

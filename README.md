@@ -251,7 +251,7 @@ mrstack daemon    # 시스템 데몬 등록 → 재부팅해도 자동 시작
 <summary><b>고급: git clone으로 설치</b></summary>
 
 ```bash
-git clone https://github.com/whynowlab/mrstack.git
+git clone https://github.com/thestack-ai/mrstack.git
 cd mrstack
 pip install -e .
 mrstack init
@@ -266,7 +266,7 @@ mrstack init
 
 Claude Code 터미널에서:
 ```
-github.com/whynowlab/mrstack 이 레포를 보고 Mr.Stack을 설치해줘.
+github.com/thestack-ai/mrstack 이 레포를 보고 Mr.Stack을 설치해줘.
 ```
 
 Claude가 README를 읽고 설치 과정을 안내합니다.
@@ -416,7 +416,7 @@ Mr.Stack 자체는 무료(오픈소스)이고, 서버 비용도 없습니다.
 ## 링크
 
 - [Threads @thestack_ai](https://www.threads.net/@thestack_ai) — 개발 이야기, 업데이트
-- [GitHub Issues](https://github.com/whynowlab/mrstack/issues) — 버그 리포트, 기능 요청
+- [GitHub Issues](https://github.com/thestack-ai/mrstack/issues) — 버그 리포트, 기능 요청
 - [PyPI](https://pypi.org/project/mrstack/) — 패키지
 - [claude-code-telegram](https://github.com/nicepkg/claude-code-telegram) — 기반 프레임워크
 

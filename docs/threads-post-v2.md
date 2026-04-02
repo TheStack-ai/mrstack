@@ -22,7 +22,7 @@ Claude Code로 개인 AI 비서를 만들었습니다.
 24시간 함께 성장하는 AI 파트너입니다.
 
 오픈소스로 공개합니다.
-github.com/whynowlab/mrstack
+github.com/thestack-ai/mrstack
 
 ---
 
@@ -142,6 +142,6 @@ Mr.Stack은 물어보지 않아도 먼저 말합니다.
 • Telegram 계정
 
 전부 오픈소스입니다.
-github.com/whynowlab/mrstack
+github.com/thestack-ai/mrstack
 
 궁금한 점은 댓글로 남겨주세요.

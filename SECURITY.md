@@ -8,4 +8,4 @@
 
 ## Reporting a Vulnerability
 
-Email security@whynowlab.com with description, steps to reproduce, and potential impact. Response within 48 hours.
+Email security@thestack-ai.com with description, steps to reproduce, and potential impact. Response within 48 hours.

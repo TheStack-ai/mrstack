@@ -19,4 +19,4 @@ Claude Code로 24시간 AI 집사를 만들었습니다.
 100% 로컬. 서버 없음. API 키 노출 없음.
 오픈소스로 공개합니다.
 
-github.com/whynowlab/mrstack
+github.com/thestack-ai/mrstack

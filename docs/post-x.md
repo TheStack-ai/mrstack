@@ -14,7 +14,7 @@ Open source. Runs 100% locally.
 
 [demo GIF placeholder]
 
-github.com/whynowlab/mrstack
+github.com/thestack-ai/mrstack
 
 ---
 
@@ -88,7 +88,7 @@ Free. Open source. MIT license.
 uv tool install claude-code-telegram
 
 # 2. Install Mr.Stack
-git clone https://github.com/whynowlab/mrstack
+git clone https://github.com/thestack-ai/mrstack
 cd mrstack && ./install.sh
 
 # 3. Run
@@ -105,7 +105,7 @@ That's it.
 If you use Claude Code and don't get a nightly coaching report, you're only using half of it.
 
 Star it, fork it, break it, improve it:
-github.com/whynowlab/mrstack
+github.com/thestack-ai/mrstack
 
 Feedback welcome — especially from heavy Claude Code users.
 

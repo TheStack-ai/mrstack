@@ -93,7 +93,7 @@ The data layer is intentionally simple: Markdown files for memory, JSONL for int
 uv tool install claude-code-telegram
 
 # 2. Install Mr.Stack
-git clone https://github.com/whynowlab/mrstack.git
+git clone https://github.com/thestack-ai/mrstack.git
 cd mrstack && ./install.sh
 # → Prompts for your Telegram bot token and user ID
 
@@ -113,7 +113,7 @@ claude-telegram-bot
 
 ## Links
 
-- GitHub: [github.com/whynowlab/mrstack](https://github.com/whynowlab/mrstack)
+- GitHub: [github.com/thestack-ai/mrstack](https://github.com/thestack-ai/mrstack)
 - License: MIT
 - macOS only (for now — the Jarvis mode relies on macOS-specific APIs)
 

@@ -12,7 +12,7 @@ Claude Code로 24시간 AI 집사를 만들었습니다.
 - 대화 패턴 학습 → 쓸수록 나를 더 잘 앎
 - 100% 로컬, 서버 없음
 
-오픈소스: github.com/whynowlab/mrstack
+오픈소스: github.com/thestack-ai/mrstack
 
 ---
 
@@ -28,7 +28,7 @@ It runs as a Telegram bot on my MacBook — even with the lid closed.
 - 9 scheduled jobs (Haiku/Sonnet/Opus auto-routed)
 - 100% local. No server. No API keys exposed.
 
-Open source: github.com/whynowlab/mrstack
+Open source: github.com/thestack-ai/mrstack
 
 ---
 
@@ -46,4 +46,4 @@ and sends a brutally honest daily coaching report.
 
 Built with: Claude Code SDK, Telegram Bot API, macOS LaunchAgent, FastAPI, MCP (Calendar, Notion, Playwright, AppleScript)
 
-github.com/whynowlab/mrstack
+github.com/thestack-ai/mrstack
