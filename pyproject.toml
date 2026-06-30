@@ -62,5 +62,6 @@ include = [
     "pyproject.toml",
     "README.md",
     "README.en.md",
+    "README.ja.md",
     "LICENSE",
 ]

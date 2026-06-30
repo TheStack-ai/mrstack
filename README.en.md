@@ -429,3 +429,5 @@ MIT
 ---
 
 *[한국어 버전 →](README.md)*
+<br>
+*[日本語 →](README.ja.md)*
